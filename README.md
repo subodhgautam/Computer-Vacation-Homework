@@ -1,5 +1,16 @@
 # Computer-Vacation-Homework
 
+Problem image 
+
+
+# project title
+Student Record Management System
+
+# objective
+To complete the assignment of vacation homework
+
+Picture (of the main program)
+
 
 Algorithm
 
@@ -27,4 +38,11 @@ Step 9: Stop.
 
 Flowchart
 
+
+jjj
+
+
+Screenshots
+
+1,2,3,4
 
