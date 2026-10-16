@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-// #define
+#define NUMBER_OF_SUBJECTS  5
+#define TOTAL_STUDENTS 100
+
 
 struct Student {
     int roll_no;
     char name[50];
-    float marks;
+    float marks[NUMBER_OF_SUBJECTS];
     float total;
     float percentage;
     char result[10];
@@ -34,7 +36,7 @@ int main() {
     int total = 100;
     struct Student students[total];
     
-    int choice, count;
+    int choice, count=0;
     
     do {
         printf("\n=========================================\n");
@@ -130,7 +132,7 @@ return 0;
 
 
 void addStudent(struct Student s[], int *count) {
-    if (*count >= MAX_STUDENTS) {
+    if (*count >= TOTAL_STUDENTS) {
         printf("Database is full!\n");
         return;
     }
@@ -148,13 +150,15 @@ void addStudent(struct Student s[], int *count) {
     }
 
     printf("Enter Name: ");
-    getchar(); // clear buffer
+   
+    
  scanf("%s",&s[c].name);
 
     s[c].total = 0;
     int failed = 0;
-    printf("Enter marks for 5 subjects:\n");
-    for (int i = 0; i < NUM_SUBJECTS; i++) {
+    printf("Enter marks for %d subjects:\n", NUMBER_OF_SUBJECTS);
+
+    for (int i = 0; i < NUMBER_OF_SUBJECTS; i++) {
         printf("Subject %d: ", i + 1);
         scanf("%f", &s[c].marks[i]);
         if (s[c].marks[i] < 0 || s[c].marks[i] > 100) {
@@ -168,7 +172,7 @@ void addStudent(struct Student s[], int *count) {
         }
     }
 
-    s[c].percentage = s[c].total / NUM_SUBJECTS;
+    s[c].percentage = s[c].total / NUMBER_OF_SUBJECTS;
     strcpy(s[c].result, failed ? "Fail" : "Pass"); 
 
     (*count)++;
@@ -214,11 +218,11 @@ void calculateResult(struct Student s[], int count) {
     for (int i = 0; i < count; i++) {
         s[i].total = 0;
         int failed = 0;
-        for (int j = 0; j < NUM_SUBJECTS; j++) {
+        for (int j = 0; j < NUMBER_OF_SUBJECTS; j++) {
             s[i].total += s[i].marks[j];
             if (s[i].marks[j] < 40) failed = 1;
         }
-        s[i].percentage = s[i].total / NUM_SUBJECTS;
+        s[i].percentage = s[i].total / NUMBER_OF_SUBJECTS;
         strcpy(s[i].result, failed ? "Fail" : "Pass");
     }
     printf("All results recalculated successfully!\n");
@@ -242,13 +246,13 @@ void updateStudent(struct Student s[], int count) {
             s[i].total = 0;
             int failed = 0;
 
-            for (int j = 0; j < NUM_SUBJECTS; j++) {
+            for (int j = 0; j < NUMBER_OF_SUBJECTS; j++) {
                 printf("Subject %d: ", j + 1);
                 scanf("%f", &s[i].marks[j]);
                 s[i].total += s[i].marks[j];
                 if (s[i].marks[j] < 40) {failed = 1;}
             }
-            s[i].percentage = s[i].total / NUM_SUBJECTS;
+            s[i].percentage = s[i].total / NUMBER_OF_SUBJECTS;
 
             strcpy(s[i].result, failed ? "Fail" : "Pass");
             
