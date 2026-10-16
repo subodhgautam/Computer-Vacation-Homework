@@ -17,10 +17,13 @@ struct Student {
 // use definition to impress sir
 
 
-int main() {
-    struct Student students[100];
 
-    int choice;
+
+int main() {
+    int total = 100;
+    struct Student students[total];
+    
+    int choice, count;
     
     do {
         printf("\n=========================================\n");
@@ -37,35 +40,48 @@ int main() {
         
     
         if (scanf("%d", &choice) != 1) {
+            // invalid case handling
             printf("Invalid input! Please enter a number.\n");
+
             while(getchar() != '\n'); // clear buffer
-            continue;
+            continue; 
+            // kaam lagney keyword
         }
 
         
         switch (choice) {
             case 1:
-                addStudent(students, &count);
+                addStudent(students, count);
                 break;
+
             case 2:
                 displayStudents(students, count);
                 break;
+
             case 3:
                 searchStudent(students, count);
                 break;
+
             case 4:
                 calculateResult(students, count);
                 break;
+
+
             case 5:
                 updateStudent(students, count);
                 break;
+
             case 6:
                 findHighestMarks(students, count);
                 break;
+
             case 7:
                 printf("Exiting program. Thank you!\n");
                 break;
+
             default:
                 printf("Invalid choice! Please choose between 1 and 7.\n");
         }
     } while (choice != 7);
+return 0;
+}
